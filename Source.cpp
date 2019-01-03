@@ -8,7 +8,6 @@ struct Link
 	Link* left;
 	Link* right;
 };
-
 class Tree
 {
 private:
@@ -24,6 +23,8 @@ public:
 	}
 	void add(int d);
 	void addin(Link* tmp, int d);
+	void showTree();
+	void print(Link* root);
 };
 void Tree::addin(Link* tmp, int d)
 {
@@ -48,7 +49,7 @@ void Tree::addin(Link* tmp, int d)
 			tmp->left = new Link;
 			tmp->left->data = d;
 			tmp->left->left = NULL;
-			tmp->right->right = NULL;
+			tmp->left->right = NULL;
 		}
 		else
 		{
@@ -70,14 +71,32 @@ void Tree::add(int d)
 		addin(root, d);
 	}
 }
+void Tree::showTree()
+{
+	print(root);
+}
+void Tree::print(Link* root)
+{
+	if (root == NULL)   // Базовый случай
+	{
+		return;
+	}
+	print(root->left);
+	cout << root->data << " ";
+	print(root->right);
+}
 int main()
 {
 	Tree tree;
-	tree.add(4);
-	tree.add(21);
-	tree.add(313);
-	tree.add(2);
+	tree.add(12);
 	tree.add(1);
-	//tree.add(0);
+	tree.add(20);
+	tree.add(0);
+	tree.add(5);
+	tree.add(22);
+	tree.add(15);
+
+	tree.showTree();
+
 	system("pause");
 }
